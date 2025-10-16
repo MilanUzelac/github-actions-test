@@ -26,6 +26,9 @@ jobs:
           latest=false
     - name: Checkout for tag
       uses: actions/checkout@v4
+    - name: Debug Docker tags
+      run: |
+        echo "Tags: ${{ steps.meta.outputs.tags }}"
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Login to Docker Hub (if pushing to a private registry)
@@ -38,7 +41,8 @@ jobs:
       with:
         context: .
         push: true # Set to false if you only want to build without pushing
-        tags: ${{ steps.meta.outputs.tags }}
+        #tags: ${{ steps.meta.outputs.tags }}
+        tags: milanuzelac/github-actions-test:${{ github.ref_name }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64,linux/arm64 # Example for multi-platform build
         cache-from: type=gha,scope=buildx-cache
