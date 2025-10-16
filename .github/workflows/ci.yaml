@@ -42,7 +42,7 @@ jobs:
         context: .
         push: true # Set to false if you only want to build without pushing
         #tags: ${{ steps.meta.outputs.tags }}
-        tags: milanuzelac/github-actions-test:${{ github.ref_name }}
+        tags: milanuzelac/github-actions-test:1.0.2
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64,linux/arm64 # Example for multi-platform build
         cache-from: type=gha,scope=buildx-cache
