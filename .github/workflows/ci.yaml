@@ -50,6 +50,7 @@ jobs:
         repository: milanuzelac/github-actions-test
         token: ${{ secrets.GIT_PAT }}
         path: .
+        run: ls -la
     - name: Update Image Tag in Deployment
       run: |
         cd .
