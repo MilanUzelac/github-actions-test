@@ -44,3 +44,20 @@ jobs:
         platforms: linux/amd64,linux/arm64 # Example for multi-platform build
         cache-from: type=gha,scope=buildx-cache
         cache-to: type=gha,scope=buildx-cache,mode=max
+    - name: Checkout Kubernetes Manifests
+      uses: actions/checkout@v4
+      with:
+        repository: milanuzelac/github-actions-test
+        token: ${{ secrets.GIT_PAT }}
+        path: .
+    - name: Update Image Tag in Deployment
+      run: |
+        cd manifests
+        sed -i "s|milanuzelac/github-actions-test:.*|milanuzelac/github-actions-test:${{ env.NEW_IMAGE_TAG }}|g" deployment.yaml
+    - name: Commit and Push Changes
+      run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deployment.yaml
+          git commit -m "Update image to ${{ env.NEW_IMAGE_TAG }}"
+          git push
