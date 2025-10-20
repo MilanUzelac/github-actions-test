@@ -52,7 +52,7 @@ jobs:
         path: .
     - name: Update Image Tag in Deployment
       run: |
-        cd manifests
+        cd .
         sed -i "s|milanuzelac/github-actions-test:.*|milanuzelac/github-actions-test:${{ env.NEW_IMAGE_TAG }}|g" deployment.yaml
     - name: Commit and Push Changes
       run: |
