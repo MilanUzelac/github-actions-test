@@ -54,8 +54,8 @@ jobs:
       run: |
         ls -la
         printenv
-        TAG=${{ steps.meta.outputs.tags }}
-        sed -i "s|image: milanuzelac/github-actions-test:.*|image: milanuzelac/github-actions-test:$TAG|g" deployment.yaml
+        IMAGE_TAG=${{ steps.meta.outputs.tags }}
+        sed -i "s|image: .*|image: $IMAGE_TAG|g" deployment.yaml
        # sed -i "s|milanuzelac/github-actions-test:.*|milanuzelac/github-actions-test:${{ steps.meta.outputs.tags }}|g" deployment.yaml
     - name: Commit and Push Changes
       run: |
