@@ -54,7 +54,7 @@ jobs:
       run: |
         ls -la
         printenv
-        sed -i "s|milanuzelac/github-actions-test:.*|milanuzelac/github-actions-test:${{ steps.meta.outputs.tags }}|g" deployment.yaml
+        sed -i "s|github-actions-test:*|github-actions-test:${{ steps.meta.outputs.tags }}|g" deployment.yaml
     - name: Commit and Push Changes
       run: |
           git config user.name "github-actions[bot]"
