@@ -48,7 +48,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: milanuzelac/github-actions-argocd-k8s-test
-        token: ${{ secrets.GIT_PAT }}
+        token: ${{ secrets.FINE_PAT }}
         path: .
     - name: Update Image Tag in Deployment
       run: |
